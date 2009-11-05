@@ -1,6 +1,6 @@
 
-AS3-Global-Object
-----------------------
+AS3-Global-Object  /  VERSION 2.0
+---------------------------------
 
 AS3 Global Object is a Singleton that lets you store dynamic variables in a globally accessible location within your Actionscript 3 application (also known as the missing _global property). This enables developers to accomplish things like self registering visual components, global events and event listeners.
 
