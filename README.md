@@ -15,7 +15,8 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	
 ### Instantiating Global Object
 
-	// Assuming Test.as
+`Assuming: Test.as`
+
 	package  {
 		import flash.display.*;
 		import com.inruntime.utils.*;
