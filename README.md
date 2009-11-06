@@ -15,11 +15,11 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	
 ### Instantiating Global Object
 
+	// Assuming Test.as
 	package  {
 		import flash.display.*;
 		import com.inruntime.utils.*;
 	
-		// Assuming Test.as
 		public class Test extends Sprite 
 		{
  			// initialize the global object
@@ -33,12 +33,12 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	}
 	
 ### Wrong way to instantiate Global Object
-
+	
+	// Assuming Test.as
 	package  {
 		import flash.display.*;
 		import com.inruntime.utils.*;
 	
-		// Assuming Test.as
 		public class Test extends Sprite 
 		{
  			// This is an example how you should NOT instantiate the Global Object
@@ -50,11 +50,11 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	
 ### Setting and getting dynamic variables
 
+	// Assuming Test.as
 	package  {
 		import flash.display.*;
 		import com.inruntime.utils.*;
 		
-		// Assuming Test.as
 		public class Test extends Sprite
 		{
 			private var $:Global = Global.getInstance();
@@ -83,12 +83,12 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	
 ### Watching a global variable
 
+	// Assuming Test.as
 	package {
 		import flash.display.Sprite;
 		import com.inruntime.utils.Global;
 		import com.inruntime.utils.GlobalEvent;
 		
-		// Assuming Test.as
 		public class Test extends Sprite 
 		{
 			private var $:Global = Global.getInstance();
@@ -122,11 +122,11 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 
 ### Using Global Object to access Stage from anywhere
 
+	// Assuming StageExample.as
 	package {
 		import flash.display.Sprite;
 		import com.inruntime.utils.*;
 		
-		// Assuming StageExample.as
 		public class StageExample extends Sprite 
 		{
 			// Let's instantiate Global Object for the first time
@@ -142,10 +142,10 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 		}
 	}
 	
+	// Assuming TestClass.as
 	package {
 		import com.inruntime.utils.*;
 		
-		// Assuming TestClass.as
 		public class TestClass {
 			// Let's get the reference to our Global Object inside the test class
 			private var $:Global = Global.getInstance();
