@@ -4,11 +4,11 @@
 
 AS3 Global Object is a Singleton that lets you store dynamic variables in a globally accessible location within your Actionscript 3 application (also known as the missing _global property). This enables developers to accomplish things like self registering visual components, global events and event listeners.
 
-Global Object is maintained by Paulius Uza (http://www.uza.lt) and InRuntime Ltd. (http://www.inruntime.com). As of November 6, 2009 project is hosted on GitHub.
+Global Object is maintained by `Paulius Uza` (http://www.uza.lt) and `InRuntime Ltd.` (http://www.inruntime.com). As of November 6, 2009 project is hosted on GitHub.
 
 ## Examples
 
-### Initializing Global Object
+### Instantiating Global Object
 
 	package  {
 		import flash.display.*;
@@ -24,6 +24,22 @@ Global Object is maintained by Paulius Uza (http://www.uza.lt) and InRuntime Ltd
 			public function Test(){
 			 	// your application code here
 			}
+		}
+	}
+	
+### Wrong way to instantiate Global Object
+
+	package  {
+		import flash.display.*;
+		import com.inruntime.utils.*;
+	
+		// Assuming Test.as
+		public class Test extends Sprite 
+		{
+ 			// This is an example how you should NOT instantiate the Global Object
+			// Global Object is a singleton and has to be initialized using .getInstance() function therefore the following with throw and exception:
+			private var global:Global = new Global();
+			
 		}
 	}
 	
