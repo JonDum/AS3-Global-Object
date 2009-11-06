@@ -1,4 +1,4 @@
-# AS3-Global-Object `VERSION 2.0`
+# AS3-Global-Object `2.0`
 
 ## Description
 
@@ -13,17 +13,16 @@ http://www.uza.lt/codex/as3-global-object/
 
 ### Initializing Global Object
 
-package  {
-	import flash.display.*;
-	import com.inruntime.utils.*;
+import flash.display.*;
+import com.inruntime.utils.*;
 	
-	public class Test extends Sprite 
-	{
- 		// initialize the global object
-		// you have to repeat this step in every class that will use the global
-		private var global:Global = Global.getInstance();
-		public function Test(){
-			 // your application code here
-		}
+public class Test extends Sprite 
+{
+	// initialize the global object
+	// you have to repeat this step in every class that will use the global
+	
+	private var global:Global = Global.getInstance();
+	public function Test(){
+		 // your application code here
 	}
 }
