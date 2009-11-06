@@ -1,13 +1,10 @@
-# AS3-Global-Object `2.0`
+# AS3-Global-Object `v2.0`
 
 ## Description
 
 AS3 Global Object is a Singleton that lets you store dynamic variables in a globally accessible location within your Actionscript 3 application (also known as the missing _global property). This enables developers to accomplish things like self registering visual components, global events and event listeners.
 
-As of November 6, 2009 project is hosted on GitHub.
-
-Documentation can still be found at
-http://www.uza.lt/codex/as3-global-object/
+Global Object is maintained by Paulius Uza (http://www.uza.lt) and InRuntime Ltd. (http://www.inruntime.com). As of November 6, 2009 project is hosted on GitHub.
 
 ## Examples
 
@@ -17,6 +14,7 @@ http://www.uza.lt/codex/as3-global-object/
 		import flash.display.*;
 		import com.inruntime.utils.*;
 	
+		// Assuming Test.as
 		public class Test extends Sprite 
 		{
  			// initialize the global object
@@ -35,6 +33,7 @@ http://www.uza.lt/codex/as3-global-object/
 		import flash.display.*;
 		import com.inruntime.utils.*;
 		
+		// Assuming Test.as
 		public class Test extends Sprite
 		{
 			private var global:Global = Global.getInstance();
@@ -68,10 +67,11 @@ http://www.uza.lt/codex/as3-global-object/
 		import com.inruntime.utils.Global;
 		import com.inruntime.utils.GlobalEvent;
 		
-		public class test extends Sprite
+		// Assuming Test.as
+		public class Test extends Sprite 
 		{
 			private var global:Global = Global.getInstance();
-			public function test()
+			public function Test()
 			{
 				// Let's listen for property changes on the global object
 				global.addEventListener(GlobalEvent.PROPERTY_CHANGED,onPropChanged);
