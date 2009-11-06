@@ -1,6 +1,5 @@
 /*
  Copyright (c) 2007-2009 Paulius Uza  <paulius@uza.lt> and InRuntime Ltd. <hello@inruntime.com>
- All rights reserved.
   
  Permission is hereby granted, free of charge, to any person obtaining a copy 
  of this software and associated documentation files (the "Software"), to deal 
@@ -18,9 +17,6 @@
  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION 
  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
- AS OF NOVEMBER 6, 2009 AS3-Global-Object is hosted on GitHub 
- at http://github.com/inruntime/AS3-Global-Object
 
 @ignore
 */
