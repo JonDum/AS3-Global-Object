@@ -119,3 +119,39 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 			}
 		}
 	}
+
+### Using Global Object to access Stage from anywhere
+
+	package {
+		import flash.display.Sprite;
+		import com.inruntime.utils.*;
+		
+		// Assuming StageExample.as
+		public class StageExample extends Sprite 
+		{
+			// Let's instantiate Global Object for the first time
+			private var $:Global = Global.getInstance();
+			
+			public function StageExample()
+			{
+				// Let's put the stage reference into our newly instantiated Global Object:
+				$.stage = this.stage;
+				// Now let's initialize our child class
+				var test:TestClass = new TestClass();
+			}
+		}
+	}
+	
+	package {
+		import com.inruntime.utils.*;
+		
+		// Assuming TestClass.as
+		public class TestClass {
+			// Let's get the reference to our Global Object inside the test class
+			private var $:Global = Global.getInstance();
+			public function TestClass() {
+				// The following line will trace '[object Stage]'
+				trace($.stage);
+			}
+		}
+	}
