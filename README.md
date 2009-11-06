@@ -34,7 +34,8 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	
 ### Wrong way to instantiate Global Object
 	
-	// Assuming Test.as
+`Assuming: Test.as`
+
 	package  {
 		import flash.display.*;
 		import com.inruntime.utils.*;
@@ -50,7 +51,8 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	
 ### Setting and getting dynamic variables
 
-	// Assuming Test.as
+`Assuming: Test.as`
+
 	package  {
 		import flash.display.*;
 		import com.inruntime.utils.*;
@@ -83,7 +85,8 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	
 ### Watching a global variable
 
-	// Assuming Test.as
+`Assuming: Test.as`
+
 	package {
 		import flash.display.Sprite;
 		import com.inruntime.utils.Global;
@@ -122,7 +125,8 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 
 ### Using Global Object to access Stage from anywhere
 
-	// Assuming StageExample.as
+`Assuming: StageExample.as`
+
 	package {
 		import flash.display.Sprite;
 		import com.inruntime.utils.*;
@@ -142,7 +146,8 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 		}
 	}
 	
-	// Assuming TestClass.as
+`Assuming: TestClass.as`	
+
 	package {
 		import com.inruntime.utils.*;
 		
