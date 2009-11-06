@@ -8,6 +8,11 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 
 ## Examples
 
+### Recommended Syntax
+
+	// We highly recommend using dollar sign as a shorthand for accessing Global Object!
+	public var $:Global = Global.getInstance();
+	
 ### Instantiating Global Object
 
 	package  {
@@ -19,7 +24,7 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 		{
  			// initialize the global object
 			// you have to repeat this step in every class that will use the global
-			private var global:Global = Global.getInstance();
+			private var $:Global = Global.getInstance();
 			
 			public function Test(){
 			 	// your application code here
@@ -39,7 +44,7 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
  			// This is an example how you should NOT instantiate the Global Object
 			// Global Object is a singleton and has to be initialized using .getInstance() function 
 			// Therefore the following with throw and exception:
-			private var global:Global = new Global();
+			private var $:Global = new Global();
 		}
 	}
 	
@@ -52,26 +57,26 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 		// Assuming Test.as
 		public class Test extends Sprite
 		{
-			private var global:Global = Global.getInstance();
+			private var $:Global = Global.getInstance();
 			private var testSprite:Sprite = new Sprite();
 			
 			public function Test(){
 				//setting variables is easy, global object accepts any name / value pair, even functions
-				global.stage = this.stage;
-				global.testA = "a"
-				global.testB = testSprite;
-				global.testF = test;
+				$.stage = this.stage;
+				$.testA = "a"
+				$.testB = testSprite;
+				$.testF = test;
 				
 				//getting variables is easy too
-				trace(global.testA);
-				this.addChild(testB);
+				trace($.testA);
+				this.addChild($.testB);
 				
 				//as easy as calling a globally stored function
-				global.testF();
+				$.testF();
 			}
 			
 			private function test():void {
-					trace("this is a global test");
+				trace("this is a global test");
 			}
 		}
 	}
@@ -86,30 +91,31 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 		// Assuming Test.as
 		public class Test extends Sprite 
 		{
-			private var global:Global = Global.getInstance();
+			private var $:Global = Global.getInstance();
 			public function Test()
 			{
 				// Let's listen for property changes on the global object
-				global.addEventListener(GlobalEvent.PROPERTY_CHANGED,onPropChanged);
+				$.addEventListener(GlobalEvent.PROPERTY_CHANGED,onPropChanged);
 				
 				// Event fires when you set or update a direct property of Global storage, let's try that
-				global.variableA = 1;
-				global.variableA = 23;
-				global.variableA = 41;
-				global.variableB = 20;
-				global.variableB = global.variableA;
+				$.variableA = 1;
+				$.variableA = 23;
+				$.variableA = 41;
+				$.variableB = 20;
+				$.variableB = $.variableA;
+				
 				var sp:Sprite = new Sprite();
-				global.sp = sp;
+				$.sp = sp;
 				
 				// However, event does not fire when you set a property of an object inside Global storage.
-				global.sp.x = 10;
-				global.sp.x = 23;
-				sp.x = 34;
+				$.sp.x = 10;
+				$.sp.y = 23;
+				sp.y = 34;
 			}
 			
 			private function onPropChanged(e:GlobalEvent):void {
 				// Property name can be accessed through GlobalEvent object;
-				trace ("property "+ e.property + " has changed to " + global[e.property]);
+				trace ("property "+ e.property + " has changed to " + $[e.property]);
 			}
 		}
 	}
