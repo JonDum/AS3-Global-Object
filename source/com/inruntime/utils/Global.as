@@ -1,5 +1,6 @@
 /*
  Copyright (c) 2007-2009 Paulius Uza  <paulius@uza.lt> and InRuntime Ltd. <hello@inruntime.com>
+ All rights reserved.
   
  Permission is hereby granted, free of charge, to any person obtaining a copy 
  of this software and associated documentation files (the "Software"), to deal 
@@ -18,14 +19,17 @@
  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+ AS OF NOVEMBER 6, 2009 AS3-Global-Object is hosted on GitHub 
+ at http://github.com/inruntime/AS3-Global-Object
+
 @ignore
 */
 
 package com.inruntime.utils
 {
 	
-	import flash.utils.*;
 	import flash.events.*;
+	import flash.utils.*;
 	
 	public dynamic class Global extends Proxy implements IEventDispatcher
 	{
@@ -56,6 +60,8 @@ package com.inruntime.utils
 		private static var instance:Global = null;
 		private static var allowInstantiation:Boolean = false;
 		private var globalRepository:GlobalHashMap;
+		private var globalKeychain:GlobalHashMap;
+		private var globalIncrement:int = 1;
 		private var dispatcher:EventDispatcher;
 		
 		/**
@@ -80,6 +86,7 @@ package com.inruntime.utils
 				throw new Error("Error: Instantiation failed: Use Global.getInstance() instead of new Global().");
 			} else {
 				globalRepository = new GlobalHashMap();
+				globalKeychain = new GlobalHashMap();
 				dispatcher = new EventDispatcher(this);
 			}
 		}
@@ -100,6 +107,10 @@ package com.inruntime.utils
 		
 		override flash_proxy function setProperty(name:*, value:*):void {
 			var oldValue = globalRepository.getValue(name);
+			if(!oldValue) {
+				globalKeychain.put(name,globalIncrement.toString());
+				globalIncrement++;
+			}
 			globalRepository.put(name , value);
 			
 			if(oldValue !== value) {
@@ -107,15 +118,36 @@ package com.inruntime.utils
 			}
 		}
 		
+		override flash_proxy function nextName(index:int):String {
+			return getKey(index);
+		}
+		
+		override flash_proxy function nextValue(index:int):* {
+			var prop:String = getKey(index);
+			return globalRepository.getValue(prop);
+		}
+		
+		override flash_proxy function nextNameIndex (index:int):int {
+			if (index < globalIncrement - 1) {
+				if(containsId(index+1)) {
+					return index + 1;
+				} else {
+					return flash_proxy::nextNameIndex(index + 1);
+				}
+			} else {
+				return 0;
+			}
+		}
+		
 		public function get length():int {
 	    	var retval:int = globalRepository.size();
 	    	return retval;
 	    }
-	
+		
 		public function clear():void {
 			globalRepository.clear();
 		}
-	    
+	
 	    public function containsValue(value:*):Boolean{
 	    	var retval:Boolean = globalRepository.containsValue(value);
 	   		return retval;
@@ -125,6 +157,19 @@ package com.inruntime.utils
 	    	var retval:Boolean = globalRepository.containsKey(name);
 	   		return retval;
 	    }
+		
+		public function containsId(id:int):Boolean{
+			var retval:Boolean = globalKeychain.containsValue(id);
+			return retval;
+		}
+		
+		public function getId(name:String):int {
+			return globalKeychain.getValue(name);
+		}
+		
+		public function getKey(id:int):String {
+			return globalKeychain.getKey(id);
+		}
 	    
 	   	public function put(name:String, value:*):void {
 	    	globalRepository.put(name,value);
@@ -136,11 +181,13 @@ package com.inruntime.utils
 	    
 	    public function remove(name:String):void {
 	    	globalRepository.remove(name);
+			globalKeychain.remove(name);
 	    }
 	    
 	    public function toString():String {
 	    	var temp:Array = new Array();
 	    	for (var key:* in globalRepository) {
+				if(globalRepository[key] != null)
 	    		temp.push ("{" + key + ":" + globalRepository[key] + "}");
 	    	}
 	    	return temp.join(",");
