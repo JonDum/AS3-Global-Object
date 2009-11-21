@@ -111,6 +111,10 @@ package com.inruntime.utils
 	    	var retval:int = globalRepository.size();
 	    	return retval;
 	    }
+	
+		public function clear():void {
+			globalRepository.clear();
+		}
 	    
 	    public function containsValue(value:*):Boolean{
 	    	var retval:Boolean = globalRepository.containsValue(value);
