@@ -1,4 +1,4 @@
-# AS3-Global-Object `v2.0`
+# AS3-Global-Object `v2.1`
 
 ## Description
 
