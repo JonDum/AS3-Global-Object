@@ -13,6 +13,12 @@ Global Object was created and is maintained by `Paulius Uza` (http://www.uza.lt)
 	// We highly recommend using dollar sign as a shorthand for accessing Global Object!
 	public var $:Global = Global.getInstance();
 	
+### Weak References
+
+AS3 Global Object uses weak references for storing data. This means that if the only pointer to your data is from within Global Object it is eligible for garbage collection. As of v2.1 you can turn this feature off by passing 'false' in the Global Object constructor:
+
+	public var $:Global = Global.getInstance(false);
+	
 ### Instantiating Global Object
 
 `Assuming: Test.as`
