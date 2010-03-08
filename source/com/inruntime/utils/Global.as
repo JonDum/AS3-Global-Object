@@ -68,10 +68,10 @@ package com.inruntime.utils
 		 * Returns the single global instance of this class.
 		 */
 		
-		public static function getInstance() : Global {
+		public static function getInstance(useWeakReferences:Boolean = true) : Global {
 			if ( Global.instance == null ) {
 				Global.allowInstantiation = true;
-				Global.instance = new Global();
+				Global.instance = new Global(useWeakReferences);
 				Global.allowInstantiation = false;
 			}
 			return Global.instance;
@@ -81,12 +81,12 @@ package com.inruntime.utils
 		 * Singleton constructor. Use <code>Global.getInstance();</code> instead.
 		 */
 		
-		public function Global() {
+		public function Global(useWeakReferences:Boolean = true) {
 			if (!allowInstantiation) {
 				throw new Error("Error: Instantiation failed: Use Global.getInstance() instead of new Global().");
 			} else {
-				globalRepository = new GlobalHashMap();
-				globalKeychain = new GlobalHashMap();
+				globalRepository = new GlobalHashMap(useWeakReferences);
+				globalKeychain = new GlobalHashMap(useWeakReferences);
 				dispatcher = new EventDispatcher(this);
 			}
 		}
